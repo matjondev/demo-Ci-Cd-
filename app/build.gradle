@@ -9,13 +9,13 @@ android {
 
     signingConfigs {
         debug {
-            storeFile file('../key_stores/key_store')
+            storeFile file('../key_stores/key_store.jks')
             storePassword 'key_ci_cd'
             keyAlias 'key_ci_cd'
             keyPassword 'key_ci_cd'
         }
         release {
-            storeFile file('../key_stores/key_store')
+            storeFile file('../key_stores/key_store.jks')
             storePassword 'key_ci_cd'
             keyAlias 'key_ci_cdr'
             keyPassword 'key_ci_cd'
