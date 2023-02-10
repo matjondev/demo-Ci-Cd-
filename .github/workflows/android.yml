@@ -24,6 +24,7 @@ jobs:
       run: chmod +x gradlew
     - name: Build with Gradle
       run: ./gradlew build
+
     - name: Setup Gradle Cache
       uses: actions/cache@v2
       with:
@@ -39,7 +40,7 @@ jobs:
       run: ./gradlew app:bundleRelease --stacktrace
 
     - name: Generate app APK.
-      run: ./gradlew assembleRelease --stacktrace
+      run: ./gradlew assembleDebug --stacktrace
 
     - name: Upload Bundle
       uses: actions/upload-artifact@v2
@@ -50,5 +51,5 @@ jobs:
     - name: Upload APK
       uses: actions/upload-artifact@v2
       with:
-        name: apk
-        path: app/build/outputs/apk/release/app-release.apk
+        name: expense-manager.apk
+        path: app/build/outputs/apk/debug/app-debug.apk
