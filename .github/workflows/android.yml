@@ -31,7 +31,15 @@ jobs:
           ~/.gradle/caches
           ~/.gradle/wrapper
         key: ${{ runner.os }}-${{ hashFiles('**/*.gradle*') }}-${{ hashFiles('**/gradle/wrapper/gradle-wrapper.properties') }}-${{ hashFiles('**/buildSrc/**/*.kt') }}
+
     - name: Make gradlew executable
       run: chmod +x ./gradlew
+
     - name: Generate app APK.
       run: ./gradlew assembleRelease --stacktrace
+
+    - name: Upload Apk
+      uses: actions/upload-artifact@v2
+      with:
+        name: apk
+        path: app/build/outputs/bundle/release/app-release.apk
