@@ -49,17 +49,11 @@ jobs:
 #        name: signed_app_bundle
 #        path: app/build/outputs/bundle/release/app-release.aab
 
-    - name: Upload APK
+    - name: Upload APK to Github Artifacts
       uses: actions/upload-artifact@v2
       with:
         name: demo.apk
         path: app/build/outputs/apk/debug/app-debug.apk
-
-    - name: Upload APK
-      uses: actions/upload-artifact@v1
-      with:
-        name: demo.apk
-        path: /Users/matjon/StudioProjects/DemoCICDproject/app/build/outputs
 
     - name: Download APK from build
       uses: actions/download-artifact@v1
