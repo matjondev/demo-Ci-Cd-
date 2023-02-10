@@ -35,11 +35,20 @@ jobs:
     - name: Make gradlew executable
       run: chmod +x ./gradlew
 
+    - name: Generate app bundle.
+      run: ./gradlew app:bundleRelease --stacktrace
+
     - name: Generate app APK.
       run: ./gradlew assembleRelease --stacktrace
 
-    - name: Upload Apk
-      uses: actions/upload-artifact@v2
-      with:
-        name: apk
-        path: app/build/outputs/bundle/release/app-release.apk
+  - name: Upload Bundle
+    uses: actions/upload-artifact@v2
+    with:
+      name: signed_app_bundle
+      path: app/build/outputs/bundle/release/app-release.aab
+
+  - name: Upload APK
+    uses: actions/upload-artifact@v2
+    with:
+      name: apk
+      path: app/build/outputs/apk/release/app-release.apk
