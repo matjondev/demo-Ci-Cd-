@@ -1,10 +1,14 @@
 name: Android CI
 
 on:
-  push:
-    branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
+  schedule:
+    - cron: 10 * * * *
+    - cron: 20 * * * *
+    - cron: 30 * * * *
+#  push:
+#    branches: [ "master" ]
+#  pull_request:
+#    branches: [ "master" ]
 
 jobs:
   build:
@@ -23,8 +27,8 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
 
-    - name: Build with Gradle
-      run: ./gradlew build
+#    - name: Build with Gradle
+#      run: ./gradlew build
 
     - name: Setup Gradle Cache
       uses: actions/cache@v2
@@ -33,15 +37,15 @@ jobs:
           ~/.gradle/caches
           ~/.gradle/wrapper
         key: ${{ runner.os }}-${{ hashFiles('**/*.gradle*') }}-${{ hashFiles('**/gradle/wrapper/gradle-wrapper.properties') }}-${{ hashFiles('**/buildSrc/**/*.kt') }}
-
-    - name: Make gradlew executable
-      run: chmod +x ./gradlew
+#
+#    - name: Make gradlew executable
+#      run: chmod +x ./gradlew
 
 #    - name: Generate app bundle.
 #      run: ./gradlew app:bundleRelease --stacktrace
 
-    - name: Generate app APK.
-      run: ./gradlew assembleDebug --stacktrace
+#    - name: Generate app APK.
+#      run: ./gradlew assembleDebug --stacktrace
 
 #    - name: Upload Bundle
 #      uses: actions/upload-artifact@v2
@@ -49,14 +53,14 @@ jobs:
 #        name: signed_app_bundle
 #        path: app/build/outputs/bundle/release/app-release.aab
 
-    - name: Upload APK to Github Artifacts
-      uses: actions/upload-artifact@v2
-      with:
-        name: demo.apk
-        path: app/build/outputs/apk/debug/app-debug.apk
-
-    - name: Download APK from build
-      uses: actions/download-artifact@v1
-      with:
-        name: demo.apk
+#    - name: Upload APK to Github Artifacts
+#      uses: actions/upload-artifact@v2
+#      with:
+#        name: demo.apk
+#        path: app/build/outputs/apk/debug/app-debug.apk
+#
+#    - name: Download APK from build
+#      uses: actions/download-artifact@v1
+#      with:
+#        name: demo.apk
 #        path: app/build/outputs/apk/debug/app-debug.apk
